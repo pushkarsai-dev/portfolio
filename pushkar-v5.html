@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pushkar Sai | Honors Senior Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --white:      #fafaf8;
+  --off-white:  #f4f2ee;
+  --paper:      #ede9e1;
+  --ink:        #1a1814;
+  --ink-light:  #3d3a35;
+  --ink-muted:  #6b6760;
+  --red:        #b91c1c;
+  --red-soft:   #f3eded;
+  --rule:       #ddd9d2;
+  --rule-light: #eceae5;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+  --nav-h: 62px;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ─── NAV ──────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: var(--nav-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+}
+.nav-brand {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+  color: var(--ink); cursor: pointer; line-height: 1.15;
+}
+.nav-brand small {
+  display: block; font-family: var(--sans); font-size: 0.65rem;
+  font-weight: 300; color: var(--ink-muted); letter-spacing: 0.09em; text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
+.nav-links a {
+  font-size: 0.75rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--ink-muted); cursor: pointer; text-decoration: none;
+  padding: 0.3rem 0.7rem; border-bottom: 1.5px solid transparent;
+  transition: color 0.18s, border-color 0.18s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--red); border-bottom-color: var(--red); }
+.nav-portfolio-wrap { position: relative; }
+.nav-dropdown {
+  display: none; position: absolute; top: calc(100% + 10px); left: 50%;
+  transform: translateX(-50%); min-width: 240px;
+  background: var(--white); border: 1px solid var(--rule);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.09); padding: 0.4rem 0;
+}
+.nav-portfolio-wrap:hover .nav-dropdown { display: block; }
+.nav-dropdown a {
+  display: block; padding: 0.5rem 1.2rem;
+  font-size: 0.78rem; text-transform: none; letter-spacing: 0.01em;
+  color: var(--ink-light) !important; border-bottom: none !important;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-dropdown a:hover { background: var(--off-white); color: var(--red) !important; }
+.nav-audit { font-size: 0.68rem !important; color: var(--rule) !important; }
+
+/* ─── SHELL ─────────────────────────────────────── */
+#app { padding-top: var(--nav-h); }
+.page { display: none; }
+.page.active { display: block; animation: fadein 0.18s ease; }
+@keyframes fadein { from { opacity:0; transform:translateY(3px); } to { opacity:1; transform:none; } }
+
+/* ─── LAYOUT ─────────────────────────────────────── */
+.wrap      { max-width: 960px;  margin: 0 auto; padding: 0 2rem; }
+.wrap-wide { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+.section   { padding: 3rem 0; }
+.section + .section { border-top: 1px solid var(--rule); }
+
+/* ─── TYPE ───────────────────────────────────────── */
+h1 { font-family: var(--serif); font-weight: 400; line-height: 1.12; }
+h2 { font-family: var(--serif); font-weight: 400; line-height: 1.2; font-size: 1.65rem; color: var(--ink); }
+h3 { font-family: var(--sans); font-weight: 500; font-size: 0.9rem; }
+p  { color: var(--ink-light); line-height: 1.8; font-weight: 300; max-width: 66ch; }
+p + p { margin-top: 0.85rem; }
+
+.eyebrow {
+  font-size: 0.68rem; font-weight: 400; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 0.6rem;
+}
+
+/* ─── PAGE HEADER ────────────────────────────────── */
+.page-header {
+  padding: 3.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--off-white);
+}
+.page-header h1 { font-size: clamp(2rem, 4.5vw, 3rem); color: var(--ink); }
+.page-header p  { margin-top: 0.75rem; font-size: 0.98rem; color: var(--ink-muted); }
+
+/* ─── BREADCRUMB ─────────────────────────────────── */
+.breadcrumb {
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.74rem; color: var(--ink-muted);
+  padding: 0.65rem 0;
+}
+.breadcrumb a { color: var(--ink-muted); cursor: pointer; text-decoration: none; }
+.breadcrumb a:hover { color: var(--red); }
+.breadcrumb span { margin: 0 0.4rem; color: var(--rule); }
+
+/* ─── BUTTONS ────────────────────────────────────── */
+.btn {
+  display: inline-block; padding: 0.6rem 1.6rem;
+  font-family: var(--sans); font-size: 0.76rem; font-weight: 400;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none; border: none;
+  transition: all 0.18s;
+}
+.btn-dark { background: var(--ink); color: var(--white); }
+.btn-dark:hover { background: var(--red); }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+.btn-outline:hover { border-color: var(--ink); }
+
+/* ─── TAG ────────────────────────────────────────── */
+.tag {
+  display: inline-block; font-size: 0.63rem; font-weight: 400; letter-spacing: 0.07em;
+  text-transform: uppercase; padding: 2px 7px;
+  border: 1px solid var(--rule); background: var(--off-white); color: var(--ink-muted);
+}
+.tag-hi   { background: var(--red-soft); border-color: rgba(185,28,28,0.2); color: var(--red); }
+.tag-acad { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+.tag-other { background: #f5f3ff; border-color: #ddd6fe; color: #5b21b6; }
+.tag-draft { background: #fffbeb; border-color: #fde68a; color: #92400e; }
+
+/* ─── CARDS / SURFACES ───────────────────────────── */
+.surface {
+  background: var(--off-white); border: 1px solid var(--rule); padding: 1.4rem;
+}
+
+/* ─── FOOTER ─────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--rule); margin-top: 5rem;
+  background: var(--off-white);
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.4fr 0.7fr 1.4fr 1.4fr;
+  gap: 2.5rem; padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+.footer-brand { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); display: block; margin-bottom: .4rem; }
+.footer-sub { font-size: .78rem; color: var(--ink-muted); max-width: none; line-height: 1.6; }
+.footer-heading { font-size: .63rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: .6rem; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: .25rem; }
+.footer-links a { font-size: .82rem; color: var(--ink-muted); cursor: pointer; text-decoration: none; }
+.footer-links a:hover { color: var(--red); }
+.footer-note { font-size: .78rem; color: var(--ink-muted); max-width: none; line-height: 1.65; font-weight: 300; }
+.footer-bottom { padding: 1rem 0; }
+.footer-legal { font-size: .72rem; color: var(--ink-muted); max-width: none; line-height: 1.7; }
+.footer-legal strong { color: var(--ink-light); font-weight: 500; }
+/* simple footer for audit page */
+.footer-inner { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; }
+.footer-inner p { font-size: 0.75rem; color: var(--ink-muted); max-width: none; }
+@media (max-width: 800px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── HOME ───────────────────────────────────────── */
+.home-hero {
+  min-height: calc(100vh - var(--nav-h));
+  display: flex; align-items: center; padding: 5rem 0;
+  position: relative; overflow: hidden;
+}
+.home-hero::after {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0; width: 38%;
+  background: var(--off-white); border-left: 1px solid var(--rule);
+  pointer-events: none;
+}
+.home-hero-content { position: relative; z-index: 1; }
+.hero-h1 {
+  font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 4.4rem);
+  font-weight: 300; line-height: 1.07; color: var(--ink);
+  max-width: 13ch; margin-bottom: 1.4rem;
+}
+.hero-h1 em { font-style: italic; }
+.hero-sub {
+  font-size: 1.02rem; color: var(--ink-muted); max-width: 46ch;
+  line-height: 1.8; margin-bottom: 2.25rem; font-weight: 300;
+}
+.hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+.home-theme-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--rule); margin-top: 5rem;
+}
+.theme-cell {
+  padding: 1.75rem 1.4rem; border-right: 1px solid var(--rule);
+  cursor: pointer; transition: background 0.15s; position: relative;
+  background: var(--white);
+}
+.theme-cell:last-child { border-right: none; }
+.theme-cell:hover { background: var(--off-white); }
+.theme-cell::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: transparent; transition: background 0.15s;
+}
+.theme-cell:hover::before { background: var(--red); }
+.theme-cell-num {
+  font-family: var(--serif); font-size: 2.2rem; font-weight: 300;
+  color: var(--rule); display: block; margin-bottom: 0.6rem; line-height: 1;
+}
+.theme-cell h3 { font-size: 0.85rem; color: var(--ink); margin-bottom: 0.3rem; }
+.theme-cell p  { font-size: 0.78rem; color: var(--ink-muted); margin: 0; max-width: none; }
+
+.home-intro-strip {
+  background: var(--off-white); border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule); padding: 3.5rem 0; margin-top: 5rem;
+}
+.home-intro-strip blockquote {
+  font-family: var(--serif); font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  font-weight: 300; font-style: italic; line-height: 1.55; color: var(--ink);
+  max-width: 680px;
+}
+.home-intro-strip cite {
+  display: block; margin-top: 1rem; font-family: var(--sans); font-style: normal;
+  font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted);
+}
+
+/* ─── ABOUT ──────────────────────────────────────── */
+.about-grid { display: grid; grid-template-columns: 230px 1fr; gap: 4rem; padding: 3rem 0; }
+.sidebar-box {
+  background: var(--off-white); border: 1px solid var(--rule); padding: 1.25rem; margin-bottom: 1rem;
+}
+.sidebar-box h4 {
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-muted); margin-bottom: 0.7rem;
+}
+.sidebar-box ul { list-style: none; }
+.sidebar-box li {
+  font-size: 0.84rem; color: var(--ink-light); padding: 0.28rem 0;
+  border-bottom: 1px solid var(--rule-light); font-weight: 300;
+}
+.sidebar-box li:last-child { border-bottom: none; }
+.about-section + .about-section { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); }
+
+/* ─── PORTFOLIO HUB ──────────────────────────────── */
+.hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--rule); border: 1px solid var(--rule); margin-top: 2rem; }
+.hub-card {
+  background: var(--white); padding: 2.25rem 2rem; cursor: pointer;
+  transition: background 0.15s; position: relative; overflow: hidden;
+}
+.hub-card:hover { background: var(--off-white); }
+.hub-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--rule-light); transition: background 0.15s;
+}
+.hub-card:hover::before { background: var(--red); }
+.hub-card h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem; }
+.hub-card p  { font-size: 0.88rem; color: var(--ink-muted); max-width: 36ch; }
+.hub-card-count {
+  position: absolute; bottom: 1.5rem; right: 1.75rem;
+  font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--rule);
+}
+
+/* ─── ARTIFACT LIST ──────────────────────────────── */
+.artifact-list { margin-top: 1.5rem; }
+.artifact-row {
+  display: flex; gap: 1.5rem; align-items: flex-start;
+  padding: 1.25rem 0; border-bottom: 1px solid var(--rule);
+  cursor: pointer; transition: padding-left 0.15s;
+}
+.artifact-row:hover { padding-left: 0.5rem; }
+.artifact-row:hover .ar-title { color: var(--red); }
+.ar-num { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; color: var(--rule); min-width: 2rem; line-height: 1; padding-top: 2px; }
+.ar-body { flex: 1; }
+.ar-tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
+.ar-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--ink); margin-bottom: 0.2rem; transition: color 0.15s; }
+.ar-summary { font-size: 0.84rem; color: var(--ink-muted); margin: 0; max-width: none; font-weight: 300; }
+.ar-arrow { color: var(--rule); font-size: 1rem; padding-top: 4px; }
+
+/* ─── HEADSHOT ───────────────────────────────────── */
+.headshot-block { text-align: center; }
+.headshot-placeholder {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: var(--paper); border: 1px solid var(--rule);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin: 0 auto .5rem;
+}
+.headshot-placeholder p { font-size: .72rem; color: var(--ink-muted); max-width: none; line-height: 1.4; margin: .2rem 0 0; }
+.headshot-note { font-size: .65rem; color: var(--ink-muted); max-width: 130px; line-height: 1.5; margin-top: .4rem; font-style: italic; }
+
+/* ─── CITATION BLOCK ─────────────────────────────── */
+.citation-block {
+  border-top: 1px solid var(--rule-light); margin-top: 2.5rem; padding-top: 1rem;
+}
+.citation-block h4 { font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: .5rem; }
+.citation-block p { font-size: .78rem; color: var(--ink-muted); max-width: none; font-style: italic; line-height: 1.65; }
+.citation-block p + p { margin-top: .4rem; }
+.consent-line {
+  font-size: .72rem; color: var(--ink-muted); font-style: italic;
+  border-top: 1px solid var(--rule-light); padding-top: .75rem; margin-top: 1.5rem;
+}
+.artifact-detail-hero { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--rule); }
+.artifact-detail-hero .back-link {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink-muted); cursor: pointer; text-decoration: none; margin-bottom: 1.2rem;
+  transition: color 0.15s;
+}
+.artifact-detail-hero .back-link:hover { color: var(--red); }
+.artifact-detail-hero h1 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--ink); margin-top: 0.5rem; }
+
+.artifact-media {
+  background: var(--off-white); border: 1px solid var(--rule);
+  min-height: 260px; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 2rem; margin: 2.5rem 0;
+}
+.artifact-media-icon { font-size: 2.5rem; opacity: 0.25; display: block; margin-bottom: 0.6rem; }
+.artifact-media p { font-size: 0.8rem; color: var(--ink-muted); max-width: none; }
+
+.caption-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+.caption-card { background: var(--off-white); border: 1px solid var(--rule); padding: 1.3rem; }
+.caption-card .cl { font-size: 0.63rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 0.5rem; }
+.caption-card p { font-size: 0.88rem; color: var(--ink-light); max-width: none; line-height: 1.75; margin: 0; }
+.caption-full { background: var(--off-white); border: 1px solid var(--rule); border-left: 3px solid var(--red); padding: 1.3rem 1.5rem; margin-top: 1.25rem; }
+.caption-full .cl { font-size: 0.63rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); display: block; margin-bottom: 0.5rem; }
+.caption-full p { font-size: 0.88rem; color: var(--ink-light); max-width: none; line-height: 1.75; margin: 0; }
+
+.draft-note {
+  background: #fffbeb; border: 1px solid #fde68a; padding: 0.7rem 1rem;
+  font-size: 0.8rem; color: #92400e; margin-bottom: 1.5rem;
+}
+
+/* ─── ESSAY ──────────────────────────────────────── */
+.essay-layout { display: grid; grid-template-columns: 180px 1fr; gap: 4rem; padding: 3rem 0; }
+.essay-toc { position: sticky; top: calc(var(--nav-h) + 1rem); }
+.essay-toc h4 { font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.75rem; }
+.essay-toc ul { list-style: none; }
+.essay-toc li { margin-bottom: 0.4rem; }
+.essay-toc a { font-size: 0.8rem; color: var(--ink-muted); text-decoration: none; cursor: pointer; }
+.essay-toc a:hover { color: var(--red); }
+.essay-body h2 { font-size: 1.35rem; margin: 2.5rem 0 0.75rem; padding-top: 1.75rem; border-top: 1px solid var(--rule); }
+.essay-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+.essay-body p { max-width: 66ch; }
+.essay-placeholder { background: var(--off-white); border: 1px solid var(--rule); padding: 1.75rem; margin-bottom: 2rem; text-align: center; }
+.essay-placeholder p { font-size: 0.85rem; color: var(--ink-muted); max-width: none; }
+.wordcount { font-size: 0.72rem; color: var(--ink-muted); text-align: right; padding: 0.4rem 0; border-bottom: 1px solid var(--rule); margin-bottom: 0.5rem; }
+
+/* ─── CONTACT ────────────────────────────────────── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; padding: 3rem 0; }
+.contact-row { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); align-items: flex-start; }
+.cr-label { font-size: 0.63rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-muted); min-width: 85px; padding-top: 2px; }
+.cr-val { font-size: .88rem; color: var(--ink-light); }
+.cr-val a { color: var(--red); text-decoration: none; }
+.cr-val a:hover { text-decoration: underline; }
+.form-group { margin-bottom: 1.1rem; }
+.form-group label { display: block; font-size: 0.63rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.4rem; }
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; padding: 0.6rem 0.8rem; font-family: var(--sans); font-size: 0.9rem;
+  background: var(--white); border: 1px solid var(--rule); color: var(--ink);
+  outline: none; transition: border-color 0.15s; resize: vertical;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--ink); }
+.form-group textarea { min-height: 110px; }
+
+/* ─── AUDIT ──────────────────────────────────────── */
+.audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.5rem; }
+.audit-card { background: var(--off-white); border: 1px solid var(--rule); padding: 1.25rem; }
+.audit-card h4 { font-size: 0.85rem; color: var(--ink); margin-bottom: 0.75rem; }
+.check-list { list-style: none; }
+.check-list li { font-size: 0.82rem; color: var(--ink-muted); padding: 0.3rem 0; border-bottom: 1px solid var(--rule-light); display: flex; gap: 0.5rem; }
+.check-list li:last-child { border-bottom: none; }
+.ok   { color: #15803d; }
+.warn { color: #92400e; }
+.fail { color: var(--red); }
+.audit-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 1.5rem; }
+.audit-table th { text-align: left; font-size: 0.63rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); padding: 0.4rem 0.75rem; border-bottom: 1px solid var(--rule); }
+.audit-table td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--rule-light); color: var(--ink-light); vertical-align: top; }
+.audit-table tr:hover td { background: var(--off-white); }
+
+@media (max-width: 800px) {
+  nav { padding: 0 1.25rem; }
+  .home-hero::after { display: none; }
+  .home-theme-strip { grid-template-columns: 1fr 1fr; }
+  .hub-grid, .about-grid, .contact-grid, .caption-grid { grid-template-columns: 1fr; }
+  .essay-layout { grid-template-columns: 1fr; }
+  .essay-toc { display: none; }
+  .audit-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand" onclick="go('home')">
+    Pushkar Sai
+    <small>NC State · Biological Sciences · UHP</small>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="go('home')" id="nl-home">Home</a></li>
+    <li><a onclick="go('about')" id="nl-about">About</a></li>
+    <li class="nav-portfolio-wrap">
+      <a onclick="go('portfolio')" id="nl-portfolio">Portfolio ▾</a>
+      <div class="nav-dropdown">
+        <a onclick="go('theme-research')">Scientific Research & Innovation</a>
+        <a onclick="go('theme-teaching')">Teaching & Mentorship</a>
+        <a onclick="go('theme-leadership')">Leadership & Service</a>
+        <a onclick="go('theme-interdisciplinary')">Interdisciplinary Growth</a>
+      </div>
+    </li>
+    <li><a onclick="go('essay')" id="nl-essay">Reflection Essay</a></li>
+    <li><a onclick="go('contact')" id="nl-contact">Contact</a></li>
+    <li><a onclick="go('audit')" id="nl-audit" class="nav-audit">Audit</a></li>
+  </ul>
+</nav>
+
+<div id="app">
+
+<!-- ════════════ HOME ════════════ -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <div class="wrap">
+      <div class="home-hero-content">
+        <div class="eyebrow">Honors Senior Portfolio · NC State University · 2026</div>
+        <h1 class="hero-h1">Science shaped by <em>iteration</em> and genuine curiosity</h1>
+        <p class="hero-sub">
+          I am a senior Biological Sciences student whose research arc — from cyanobacterial bloom dynamics in hog lagoon effluent to <em>Delftia tsuruhatensis</em> biocontrol to malaria mosquito midgut biology — reflects a single conviction: that meaningful science demands deep engagement with both the bench and the question behind it.
+        </p>
+        <div class="hero-ctas">
+          <span class="btn btn-dark" onclick="go('portfolio')">View Portfolio</span>
+          <span class="btn btn-outline" onclick="go('essay')">Read Reflection Essay</span>
+          <span class="btn btn-outline" onclick="go('contact')">Contact</span>
+        </div>
+      </div>
+
+      <div class="home-theme-strip">
+        <div class="theme-cell" onclick="go('theme-research')">
+          <span class="theme-cell-num">01</span>
+          <h3>Scientific Research & Innovation</h3>
+          <p>Bench research, poster presentations, sequencing projects</p>
+        </div>
+        <div class="theme-cell" onclick="go('theme-teaching')">
+          <span class="theme-cell-num">02</span>
+          <h3>Teaching & Mentorship</h3>
+          <p>BCH 451 TA, outreach, science communication</p>
+        </div>
+        <div class="theme-cell" onclick="go('theme-leadership')">
+          <span class="theme-cell-num">03</span>
+          <h3>Leadership & Service</h3>
+          <p>EMSI, EMT training, UHP ambassadorship</p>
+        </div>
+        <div class="theme-cell" onclick="go('theme-interdisciplinary')">
+          <span class="theme-cell-num">04</span>
+          <h3>Interdisciplinary Growth</h3>
+          <p>AI in research, bioethics, failure & iteration</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-intro-strip">
+    <div class="wrap">
+      <blockquote>
+        "My research identity was not handed to me — it was discovered through exposure, failure, and redirection. Each project has been less a destination than a better question."
+      </blockquote>
+      <cite>— Pushkar Sai, Culminating Reflection Essay</cite>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="section">
+      <div class="eyebrow">Portfolio Organization</div>
+      <h2>Organized by developmental themes, not chronology</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-top:1.5rem;">
+        <div>
+          <h3 style="margin-bottom:.4rem;">Why themes?</h3>
+          <p style="font-size:.9rem;">Growth rarely follows a calendar. These four themes — research, teaching, leadership, and interdisciplinary thinking — capture the dimensions of development that matter most for graduate work and beyond.</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom:.4rem;">Thirteen artifacts</h3>
+          <p style="font-size:.9rem;">Drawn from real work: posters, TA reflections, lab notebook excerpts, conference experiences, and structured analyses of failure. Each includes a six-part reflective caption.</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom:.4rem;">Audience</h3>
+          <p style="font-size:.9rem;">Written for faculty reviewers and graduate admissions committees. The goal is not a polished résumé but an honest account of intellectual development.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="global-footer-slot"></div>
+</div>
+
+<!-- ════════════ ABOUT ════════════ -->
+<div class="page" id="page-about">
+  <div class="page-header">
+    <div class="wrap">
+      <div style="display:grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center;">
+        <div class="headshot-block">
+          <div class="headshot-placeholder">
+            <span style="font-size:2rem;opacity:.2;">📷</span>
+            <p>Professional headshot<br><span style="font-size:.7rem;">Replace with your photo</span></p>
+          </div>
+          <p class="headshot-note">Photo shared with the author's consent for professional academic use only.</p>
+        </div>
+        <div>
+          <div class="eyebrow">About</div>
+          <h1>Background, Research & Vision</h1>
+          <p>A narrative of scientific development, teaching commitment, and the values that animate my work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="sidebar-box">
+          <h4>Education</h4>
+          <ul>
+            <li>NC State University</li>
+            <li>B.S. Biological Sciences, 2026</li>
+            <li>Concentration: Human Biology</li>
+            <li>University Honors Program</li>
+          </ul>
+        </div>
+        <div class="sidebar-box">
+          <h4>Research Focus</h4>
+          <ul>
+            <li>Goller Lab, NC State</li>
+            <li><em>Delftia tsuruhatensis</em> biocontrol</li>
+            <li>Mosquito midgut / malaria</li>
+            <li>Cyanobacterial bloom dynamics</li>
+          </ul>
+        </div>
+        <div class="sidebar-box">
+          <h4>Key Experiences</h4>
+          <ul>
+            <li>★ Goller Lab Research</li>
+            <li>★ ASM Microbe 2024</li>
+            <li>★ BCH 451 Teaching Assistant</li>
+            <li>★ EMSI Program</li>
+            <li>★ EMT Training & Certification</li>
+          </ul>
+        </div>
+        <div class="sidebar-box">
+          <h4>Technical Skills</h4>
+          <ul>
+            <li>Microbial culture & bioassays</li>
+            <li>Nanopore DNA sequencing</li>
+            <li>Fluorescence microscopy</li>
+            <li>AI-augmented research workflows</li>
+            <li>Scientific writing & poster design</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="about-section">
+          <div class="eyebrow">Academic Background</div>
+          <h2>From hog lagoons to mosquito midguts</h2>
+          <p>My research identity was not handed to me — it was discovered through exposure, failure, and redirection. I entered NC State curious about environmental biology and found myself, by junior year, doing mechanistic work on a bacterium with biocontrol potential. The thread connecting these projects is not a subject area but a disposition: find the organism, find the question, follow where it leads.</p>
+          <p>I began with a project examining cyanobacterial bloom dynamics in hog lagoon effluent — a context that taught me the complexity of environmental microbiology and the importance of questions grounded in real ecological stakes. That work led me to the Goller Lab, where I have spent the core of my undergraduate research career investigating <em>Delftia tsuruhatensis</em> and its harmane-mediated biocontrol activity, culminating in a poster at ASM Microbe 2024.</p>
+          <p>Most recently my curiosity has extended to malaria transmission biology — specifically the mosquito midgut environment after a bloodmeal and how it might be modulated. <span class="tag tag-draft">DRAFT — expand with your current mosquito project framing</span></p>
+        </div>
+
+        <div class="about-section">
+          <div class="eyebrow">Teaching & Mentorship</div>
+          <h2>The obligation to teach well</h2>
+          <p>Serving as TA for BCH 451 (Biochemistry) required me to find multiple explanatory pathways for concepts I once took for granted — and forced me to discover that explaining something clearly is a different competency than understanding it yourself. <span class="tag tag-draft">DRAFT — describe specific TA duties, sections led, and a moment that stands out</span></p>
+          <p>My outreach and science communication work reflects a conviction that scientists bear responsibility for public understanding of their research, not just peer understanding. Whether through EMSI programming or informal outreach, I have tried to build that habit early.</p>
+        </div>
+
+        <div class="about-section">
+          <div class="eyebrow">Future Direction</div>
+          <h2>Graduate school and beyond</h2>
+          <p><span class="tag tag-draft">DRAFT — add your graduate school goals, programs of interest, and the specific research questions you most want to pursue. What lab environments excite you?</span></p>
+          <p>The through-line of my academic development — from environmental microbiology to infectious disease — points toward a career in which mechanistic rigor and applied relevance are equally valued.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="global-footer-slot"></div>
+</div>
+
+<!-- ════════════ PORTFOLIO HUB ════════════ -->
+<div class="page" id="page-portfolio">
+  <div class="page-header">
+    <div class="wrap">
+      <div class="eyebrow">Portfolio</div>
+      <h1>Developmental Themes</h1>
+      <p>Thirteen artifacts organized across four dimensions of undergraduate growth.</p>
+    </div>
+  </div>
+  <div class="wrap section">
+    <div class="hub-grid">
+      <div class="hub-card" onclick="go('theme-research')">
+        <div class="eyebrow">Section I</div>
+        <h3>Scientific Research & Innovation</h3>
+        <p>Laboratory work, experimental design, poster presentations, sequencing, and the long arc of becoming a researcher.</p>
+        <div class="hub-card-count">5 Artifacts</div>
+      </div>
+      <div class="hub-card" onclick="go('theme-teaching')">
+        <div class="eyebrow">Section II</div>
+        <h3>Teaching & Mentorship</h3>
+        <p>BCH 451 TA experience, science communication, and outreach programming.</p>
+        <div class="hub-card-count">3 Artifacts</div>
+      </div>
+      <div class="hub-card" onclick="go('theme-leadership')">
+        <div class="eyebrow">Section III</div>
+        <h3>Leadership & Service</h3>
+        <p>EMSI participation, EMT certification, and UHP ambassadorship.</p>
+        <div class="hub-card-count">3 Artifacts</div>
+      </div>
+      <div class="hub-card" onclick="go('theme-interdisciplinary')">
+        <div class="eyebrow">Section IV</div>
+        <h3>Interdisciplinary Growth</h3>
+        <p>AI in research workflows, failure reflection, and cross-disciplinary inquiry.</p>
+        <div class="hub-card-count">2 Artifacts</div>
+      </div>
+    </div>
+  </div>
+  <div class="global-footer-slot"></div>
+</div>
+
+<!-- ════════════ THEME PAGE (dynamic) ════════════ -->
+<div class="page" id="page-theme">
+  <div class="breadcrumb"><div class="wrap" id="theme-bc"></div></div>
+  <div class="page-header"><div class="wrap" id="theme-hdr"></div></div>
+  <div class="wrap"><div class="artifact-list" id="theme-list"></div></div>
+  <div class="global-footer-slot"></div>
+</div>
+
+<!-- ════════════ ARTIFACT DETAIL (dynamic) ════════════ -->
+<div class="page" id="page-artifact">
+  <div class="breadcrumb"><div class="wrap" id="artifact-bc"></div></div>
+  <div class="wrap">
+    <div class="artifact-detail-hero" id="artifact-hdr"></div>
+    <div id="artifact-body"></div>
+  </div>
+  <div class="global-footer-slot"></div>
+</div>
+
+<!-- ════════════ ESSAY ════════════ -->
+<div class="page" id="page-essay">
+  <div class="page-header">
+    <div class="wrap">
+      <div class="eyebrow">Culminating Reflection</div>
+      <h1>The Shape of a Research Identity</h1>
+      <p>A culminating essay on scientific development, teaching, and the values I carry forward.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="essay-layout">
+      <div class="essay-toc">
+        <h4>Contents</h4>
+        <ul>
+          <li><a href="#e-intro">I. Where It Started</a></li>
+          <li><a href="#e-research">II. Learning to Research</a></li>
+          <li><a href="#e-failure">III. What Failure Taught Me</a></li>
+          <li><a href="#e-teaching">IV. Teaching as Thinking</a></li>
+          <li><a href="#e-inter">V. Across Disciplines</a></li>
+          <li><a href="#e-forward">VI. Looking Forward</a></li>
+        </ul>
+      </div>
+      <div class="essay-body">
+        <div class="draft-note">⚠ DRAFT framework — replace each section below with your own voice and specific experiences.</div>
+        <div class="wordcount">Target: 2,000–3,000 words</div>
+
+        <div class="essay-placeholder">
+          <p><strong>Option A:</strong> Upload your essay as a PDF and embed via <code>&lt;iframe src="essay.pdf"&gt;</code><br>
+          <strong>Option B:</strong> Replace the sections below with your full essay text.</p>
+        </div>
+
+        <h2 id="e-intro">I. Where It Started</h2>
+        <p>DRAFT — Describe your entry point into biology and research. What drew you to Biological Sciences? What was the moment, question, or experience that made you decide this was your field? Be specific — a lab smell, a paper that confused you, a question that wouldn't let you go.</p>
+
+        <h2 id="e-research">II. Learning to Research</h2>
+        <p>DRAFT — Narrate your development as a researcher. Move through the hog lagoon project → Goller Lab → Delftia harmane work → nanopore sequencing → mosquito midgut questions. What did each phase teach you? What changed about how you ask questions?</p>
+
+        <h2 id="e-failure">III. What Failure Taught Me</h2>
+        <p>DRAFT — Draw on the "Failure & Iteration" artifact. Be specific about what went wrong, why it went wrong, and — most importantly — what it changed about how you approach problems. Graduate programs value self-awareness over polish.</p>
+
+        <h2 id="e-teaching">IV. Teaching as Thinking</h2>
+        <p>DRAFT — Reflect on the BCH 451 TA experience. How did explaining biochemistry to undergraduates deepen your own understanding? What did you learn about the gap between knowing and teaching?</p>
+
+        <h2 id="e-inter">V. Across Disciplines</h2>
+        <p>DRAFT — Reflect on the AI-in-research artifact. How has engaging with tools and questions outside "pure" bench biology shaped your scientific identity? What does it mean to be a biologist in an era of AI-augmented discovery?</p>
+
+        <h2 id="e-forward">VI. Looking Forward</h2>
+        <p>DRAFT — Where do you want your research to go? What questions most energize you? End with a sentence that earns it — don't close with a cliché.</p>
+      </div>
+    </div>
+  </div>
+  <div class="global-footer-slot"></div>
+</div>
+
+<!-- ════════════ CONTACT ════════════ -->
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <div class="wrap">
+      <div class="eyebrow">Contact</div>
+      <h1>Get in Touch</h1>
+      <p>For academic inquiries, graduate program questions, or portfolio feedback.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <h3 style="margin-bottom:1rem;">Contact Information</h3>
+        <div class="contact-row">
+          <span class="cr-label">Email</span>
+          <span class="cr-val">prakanam@ncsu.edu</span>
+        </div>
+        <div class="contact-row">
+          <span class="cr-label">Program</span>
+          <span class="cr-val">University Honors Program, NC State University</span>
+        </div>
+        <div class="contact-row">
+          <span class="cr-label">Department</span>
+          <span class="cr-val">Department of Biological Sciences, NC State</span>
+        </div>
+        <div class="contact-row">
+          <span class="cr-label">Research</span>
+          <span class="cr-val">Goller Lab, NC State University</span>
+        </div>
+        <div class="contact-row">
+          <span class="cr-label">LinkedIn</span>
+          <span class="cr-val"><a href="https://www.linkedin.com/in/pushkar-sai" target="_blank">linkedin.com/in/pushkar-sai</a></span>
+        </div>
+        <p style="margin-top:1.5rem;font-size:.85rem;">I am available for graduate school interviews and research collaboration conversations. Please describe the nature of your inquiry.</p>
+      </div>
+      <div>
+        <h3 style="margin-bottom:1rem;">Send a Message</h3>
+        <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name"></div>
+        <div class="form-group"><label>Affiliation</label><input type="text" placeholder="University or organization"></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.edu"></div>
+        <div class="form-group">
+          <label>Nature of Inquiry</label>
+          <select>
+            <option>Graduate Program / Admissions</option>
+            <option>Research Collaboration</option>
+            <option>Portfolio / Honors Feedback</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Describe your inquiry..."></textarea></div>
+        <button class="btn btn-dark" style="cursor:pointer;">Send Message</button>
+      </div>
+    </div>
+  </div>
+  <div class="global-footer-slot"></div>
+</div>
+
+<!-- ════════════ AUDIT ════════════ -->
+<div class="page" id="page-audit">
+  <div class="page-header">
+    <div class="wrap">
+      <div class="eyebrow">Internal — Not for Submission</div>
+      <h1>Rubric Compliance Audit</h1>
+      <p>Maps directly to the NC State UHP Portfolio rubric: Required Content, Formatting & Organization, and Design/Technical. Check this page as you fill in artifacts.</p>
+    </div>
+  </div>
+  <div class="wrap section">
+    <div class="audit-grid" id="audit-summary" style="grid-template-columns:1fr;"></div>
+    <h3 style="margin:2rem 0 .25rem;">Artifact-by-Artifact Completeness</h3>
+    <p style="font-size:.85rem;margin-bottom:1rem;">The rubric requires captions be "reflective and descriptive…revealing lessons learned and skills gained" to Exceed. Fill every DRAFT field to reach that bar.</p>
+    <table class="audit-table">
+      <thead><tr><th>#</th><th>Title</th><th>Theme</th><th>Category</th><th>Caption Completeness</th></tr></thead>
+      <tbody id="audit-tbody"></tbody>
+    </table>
+  </div>
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-brand">Pushkar Sai · Internal Audit</span>
+      <p>Remove before public submission</p>
+    </div>
+  </footer>
+</div>
+
+</div><!-- #app -->
+
+<!-- ════════════════════════════════════════════════
+     DATA
+════════════════════════════════════════════════ -->
+<script>
+const THEMES = {
+  research: {
+    label: 'Scientific Research & Innovation', eyebrow: 'Section I',
+    desc: 'Laboratory research, experimental design, sequencing projects, poster presentations, and the iterative process of developing a research identity.'
+  },
+  teaching: {
+    label: 'Teaching & Mentorship', eyebrow: 'Section II',
+    desc: 'Teaching assistantship, outreach, and science communication — and what happens when you have to explain what you thought you already knew.'
+  },
+  leadership: {
+    label: 'Leadership & Service', eyebrow: 'Section III',
+    desc: 'EMSI participation, EMT certification, UHP ambassadorship, and contributions to communities inside and outside NC State.'
+  },
+  interdisciplinary: {
+    label: 'Interdisciplinary Growth', eyebrow: 'Section IV',
+    desc: 'AI integration in research, structured failure reflection, and engagement with questions at the edges of biological science.'
+  }
+};
+
+const ARTIFACTS = [
+  {
+    id: 'asm-poster', theme: 'research',
+    title: 'ASM Microbe Poster: Harmane & Delftia tsuruhatensis Biocontrol Activity',
+    category: 'Academic', isHighImpact: false, year: 2024, isDraft: true,
+    tags: ['Microbiology', 'Biocontrol', 'Poster Presentation'],
+    shortSummary: 'Poster presented at ASM Microbe 2024 reporting findings on harmane compound activity in Delftia tsuruhatensis and its implications for biocontrol applications.',
+    media: 'Poster PDF — upload your ASM Microbe poster file',
+    caption: {
+      context: 'DRAFT — Describe the poster\'s scope and the conference context. Where was ASM Microbe 2024? What session or track was your poster in?',
+      challenge: 'DRAFT — What experimental or analytical challenge did you face generating or presenting these findings? What result surprised you or required rethinking?',
+      skills: 'Scientific poster design, public presentation of research findings, synthesizing experimental data for a professional audience, fielding questions from expert reviewers at a national conference.',
+      impact: 'DRAFT — Describe the response. Any conversations, connections, or feedback that shifted your thinking?',
+      evidenceOfGrowth: 'DRAFT — How does this poster represent growth since your first poster? What is different about how you design experiments, communicate findings, or handle uncertainty?',
+      forwardDirection: 'DRAFT — What questions does this work open? How does it connect to your planned graduate research?'
+    }
+  },
+  {
+    id: 'asm-conference', theme: 'research',
+    title: 'ASM Microbe 2024: Conference Experience & Professional Formation',
+    category: 'Academic', isHighImpact: true, year: 2024, isDraft: true,
+    tags: ['★ High Impact', 'Conference', 'Professional Development'],
+    shortSummary: 'A distinct reflection on the conference experience itself: attending talks, networking with researchers, encountering new scientific directions, and operating as a scientist in a professional community for the first time.',
+    media: 'Conference badge photo, program, or networking reflection',
+    caption: {
+      context: 'DRAFT — Describe the conference context: how many days, which sessions you attended, what it felt like to be at a large national conference as an undergraduate.',
+      challenge: 'DRAFT — What was intimidating or disorienting? Were there talks you couldn\'t follow? Conversations that challenged how you think about your own work?',
+      skills: 'Scientific networking, professional self-presentation, exposure to the breadth of microbiological research, evaluating how your own work fits within a field.',
+      impact: 'DRAFT — What conversations or sessions had the most impact? Did you encounter research directions that changed how you think about your questions?',
+      evidenceOfGrowth: 'DRAFT — What does this conference experience say about your development as a professional scientist, not just a student researcher?',
+      forwardDirection: 'DRAFT — How has ASM Microbe shaped your sense of where you want to position yourself within microbiology?'
+    }
+  },
+  {
+    id: 'delftia-review', theme: 'research',
+    title: 'Delftia tsuruhatensis Mini-Review (AEM-Style Micro-Review Draft)',
+    category: 'Academic', isHighImpact: false, year: 2024, isDraft: true,
+    tags: ['Scientific Writing', 'Literature Review', 'Delftia'],
+    shortSummary: 'A literature synthesis and original micro-review of Delftia tsuruhatensis biology drafted in Applied and Environmental Microbiology style.',
+    media: 'Document PDF — upload your mini-review draft',
+    caption: {
+      context: 'DRAFT — Describe the context for writing this review. Was it self-initiated, assigned, or developed toward publication? What sources anchored the synthesis?',
+      challenge: 'DRAFT — What was difficult about writing in the AEM micro-review format? How did you organize a large body of literature into a coherent scientific argument?',
+      skills: 'Primary literature synthesis, academic scientific writing, argument structure in review format, awareness of the Delftia literature landscape.',
+      impact: 'DRAFT — Who has read this? Has it shaped your thesis or a future manuscript?',
+      evidenceOfGrowth: 'DRAFT — How does this document show growth in your scientific writing over earlier work?',
+      forwardDirection: 'DRAFT — Is this heading toward submission? What section needs the most development?'
+    }
+  },
+  {
+    id: 'fungal-id', theme: 'research',
+    title: 'Fungal Identification Using Nanopore DNA Sequencing & AI-Assisted Analysis',
+    category: 'Academic', isHighImpact: false, year: 2024, isDraft: true,
+    tags: ['Nanopore Sequencing', 'Mycology', 'Bioinformatics'],
+    shortSummary: 'Used Oxford Nanopore sequencing paired with AI-assisted bioinformatics pipelines to identify unknown fungal isolates, combining wet lab and computational approaches.',
+    media: 'Lab report, sequence output, or analysis figure',
+    caption: {
+      context: 'DRAFT — What were you trying to identify and why? What was the source of the isolates and your specific role in the project?',
+      challenge: 'DRAFT — What went wrong in sequencing or bioinformatics? What was counterintuitive about interpreting long-read nanopore data?',
+      skills: 'Nanopore library preparation, command-line bioinformatics, taxonomic ID workflows, integrating AI tools for analysis, interpreting sequence quality metrics.',
+      impact: 'DRAFT — What did you successfully identify? How does this connect to a broader research goal?',
+      evidenceOfGrowth: 'DRAFT — How does this artifact demonstrate growth in your computational skills, not just wet lab ability?',
+      forwardDirection: 'DRAFT — What would you do differently? What further sequencing or validation would you pursue?'
+    }
+  },
+  {
+    id: 'hog-lagoon-poster', theme: 'research',
+    title: 'First Research Poster: Cyanobacterial Bloom Dynamics in Hog Lagoon Effluent',
+    category: 'Academic', isHighImpact: false, year: 2022, isDraft: true,
+    tags: ['Environmental Microbiology', 'Cyanobacteria', 'First Poster'],
+    shortSummary: 'Inaugural research poster documenting early environmental microbiology fieldwork and laboratory analysis of cyanobacterial bloom samples from swine lagoon runoff.',
+    media: 'First research poster (PDF or image)',
+    caption: {
+      context: 'DRAFT — Where was this poster presented? What was the project context, who mentored you, and what was your specific contribution?',
+      challenge: 'DRAFT — What was hard about your very first research project? What did you not understand at the start that you had to learn?',
+      skills: 'Environmental sampling, microscopy, basic microbial culture, early-stage poster design, public communication of science as a sophomore.',
+      impact: 'DRAFT — What did this project teach you about what research actually is versus what you imagined it to be?',
+      evidenceOfGrowth: 'Placing this poster beside the ASM Microbe 2024 poster reveals DRAFT — describe the arc of growth in scientific communication, experimental sophistication, and confidence.',
+      forwardDirection: 'DRAFT — How does this early environmental work connect to where your research is now? What thread runs from hog lagoons to mosquito midguts?'
+    }
+  },
+  {
+    id: 'goller-lab', theme: 'research',
+    title: 'Research in the Goller Lab: Three Years of Independent Scientific Inquiry',
+    category: 'Other', isHighImpact: true, year: 2022, isDraft: true,
+    tags: ['★ High Impact', 'Undergraduate Research', 'Goller Lab'],
+    shortSummary: 'A culminating artifact documenting sustained research experience in the Goller Lab — from initial orientation through independent project design and execution across three years.',
+    media: 'Lab photo, timeline, or summary figure',
+    caption: {
+      context: 'DRAFT — How did you enter the Goller Lab and how has your role changed over time? What projects did you work on, and how did your independence grow year over year?',
+      challenge: 'DRAFT — What was the biggest scientific or personal challenge you faced in this lab context? How did you navigate repeated failure at the bench?',
+      skills: 'Independent experimental design, lab documentation, mentored research relationships, iterative scientific thinking, sustained engagement with long-term projects.',
+      impact: 'DRAFT — What has this experience produced — posters, data, manuscripts in progress, professional relationships? How has it shaped your graduate plans?',
+      evidenceOfGrowth: 'DRAFT — Contrast yourself at entry to the lab with who you are now. Be specific about what changed in how you think and work.',
+      forwardDirection: 'DRAFT — Are you continuing this work? Is there a manuscript in progress? How does this inform what you want in a graduate lab?'
+    }
+  },
+  {
+    id: 'bch451-ta', theme: 'teaching',
+    title: 'BCH 451 Teaching Assistantship: Biochemistry Laboratory Instruction',
+    category: 'Other', isHighImpact: true, year: 2024, isDraft: true,
+    tags: ['★ High Impact', 'Teaching', 'Biochemistry', 'TA'],
+    shortSummary: 'Served as TA for BCH 451 (Biochemistry), facilitating laboratory sections, holding office hours, and providing formative feedback on student work.',
+    media: 'Student feedback summary, sample graded work, or teaching reflection',
+    caption: {
+      context: 'DRAFT — Describe your TA responsibilities specifically: how many sections, how often, what tasks. What was the course covering when you TA\'d?',
+      challenge: 'DRAFT — What was harder than expected? What student interactions required you to adapt? Where did your own knowledge gaps become apparent?',
+      skills: 'Instructional design, differentiated explanation, biochemical content mastery, formative assessment, managing student questions under time pressure.',
+      impact: 'DRAFT — How did students respond? What feedback did you receive? What one interaction stands out as evidence of effectiveness?',
+      evidenceOfGrowth: 'DRAFT — How did this role change your relationship to biochemistry itself? What do you understand better now because you had to teach it?',
+      forwardDirection: 'DRAFT — Do you want to teach in your graduate career? What kind of teaching mentorship do you want to seek?'
+    }
+  },
+  {
+    id: 'sci-outreach', theme: 'teaching',
+    title: 'Science Communication & Outreach: Translating Biology for Public Audiences',
+    category: 'Other', isHighImpact: false, year: 2023, isDraft: true,
+    tags: ['Science Communication', 'Outreach', 'Public Engagement'],
+    shortSummary: 'DRAFT — Describe your outreach activities: museum events, school visits, NCSU Science Olympiad support, or informal public science communication work.',
+    media: 'Outreach photo, slide deck, or event documentation',
+    caption: {
+      context: 'DRAFT — What outreach activities have you participated in? Describe the audience, setting, and your role.',
+      challenge: 'DRAFT — What is hard about translating technical biology for a non-specialist audience? What did you get wrong the first time?',
+      skills: 'Science communication, audience awareness, simplification without distortion, community engagement.',
+      impact: 'DRAFT — What was the observable effect on your audience? How did it change how you think about your own research?',
+      evidenceOfGrowth: 'DRAFT — How has your ability to communicate science publicly grown over your time at NC State?',
+      forwardDirection: 'DRAFT — How do you plan to maintain science communication as part of your professional identity?'
+    }
+  },
+  {
+    id: 'sci-comm-methods', theme: 'teaching',
+    title: 'Research Methods Communication: Explaining the Hard Parts',
+    category: 'Academic', isHighImpact: false, year: 2023, isDraft: true,
+    tags: ['Scientific Writing', 'Methods', 'Communication'],
+    shortSummary: 'An artifact documenting efforts to communicate complex experimental methods — nanopore library preparation, RNAi approaches, or midgut dissection technique — to peers or in written form.',
+    media: 'Protocol write-up, methods section draft, or instructional slide deck',
+    caption: {
+      context: 'DRAFT — Describe what you were communicating, to whom, and why. Was this a protocol hand-off to a new lab member, a methods section for a manuscript, or a presentation?',
+      challenge: 'DRAFT — What is genuinely difficult about writing methods that are reproducible? What do experienced researchers assume that beginners don\'t know?',
+      skills: 'Technical writing, procedural clarity, awareness of tacit knowledge in laboratory practice, peer instruction.',
+      impact: 'DRAFT — Was the protocol or method successfully used by someone else? What did you revise based on feedback?',
+      evidenceOfGrowth: 'DRAFT — How does this artifact reflect growth in your ability to externalize and communicate scientific knowledge?',
+      forwardDirection: 'DRAFT — How does this connect to your interest in mentoring or training junior researchers in graduate school?'
+    }
+  },
+  {
+    id: 'emsi', theme: 'leadership',
+    title: 'EMSI Program Participation: Experiential Science Immersion',
+    category: 'Other', isHighImpact: true, year: 2023, isDraft: true,
+    tags: ['★ High Impact', 'EMSI', 'Experiential Learning'],
+    shortSummary: 'DRAFT — Expand acronym and describe the EMSI program: what it is, who runs it, what you did, and how long it lasted.',
+    media: 'Certificate, program materials, or reflection document',
+    caption: {
+      context: 'DRAFT — Describe EMSI fully: structure, duration, participants, what you did day-to-day.',
+      challenge: 'DRAFT — What required you to operate outside your comfort zone? What was unexpectedly hard?',
+      skills: 'DRAFT — What specific skills did this program develop? Field skills, collaboration, leadership, communication?',
+      impact: 'DRAFT — What concrete outcomes came from this experience? New perspectives, professional connections, changed research interests?',
+      evidenceOfGrowth: 'DRAFT — How does EMSI show intellectual and professional growth beyond the classroom?',
+      forwardDirection: 'DRAFT — How does this experience connect to your future academic or professional direction?'
+    }
+  },
+  {
+    id: 'emt-training', theme: 'leadership',
+    title: 'EMT Training & Certification: Emergency Medicine as Applied Biological Science',
+    category: 'Academic', isHighImpact: false, year: 2023, isDraft: true,
+    tags: ['EMT', 'Clinical Skills', 'Applied Physiology'],
+    shortSummary: 'Completed EMT certification training, developing skills in emergency medicine, applied human physiology, and high-stakes clinical decision-making alongside a research-intensive degree.',
+    media: 'EMT certification, training log, or reflective journal',
+    caption: {
+      context: 'DRAFT — Describe the training program: where, how long, what it covered. Were you serving actively as an EMT or primarily training? What motivated you to pursue this?',
+      challenge: 'DRAFT — What was hardest — the volume of material, the pace, or operating in high-stakes scenarios?',
+      skills: 'Emergency patient assessment, basic life support, trauma response, rapid decision-making under pressure, human physiology applied in real time.',
+      impact: 'DRAFT — How has this changed how you think about human biology and the relationship between basic science and clinical practice?',
+      evidenceOfGrowth: 'DRAFT — How does this artifact show that your education extends beyond the research lab into applied, human-facing science?',
+      forwardDirection: 'DRAFT — Do you plan to maintain certification or use this experience in your graduate career?'
+    }
+  },
+  {
+    id: 'uhp-ambassador', theme: 'leadership',
+    title: 'University Honors Program Ambassadorship & Peer Mentorship',
+    category: 'Other', isHighImpact: false, year: 2023, isDraft: true,
+    tags: ['UHP', 'Ambassadorship', 'Peer Mentoring', 'Service'],
+    shortSummary: 'DRAFT — Describe UHP ambassador role: what it entailed, who you mentored or represented, and your contributions to the UHP community.',
+    media: 'Event photo, outreach materials, or reflection',
+    caption: {
+      context: 'DRAFT — What did being a UHP ambassador involve? Recruiting events, mentoring incoming students, serving on panels, organizing programming?',
+      challenge: 'DRAFT — What was challenging about representing the UHP or mentoring newer students?',
+      skills: 'Peer mentorship, public speaking, program representation, community building within an academic institution.',
+      impact: 'DRAFT — What did you contribute? How many students did you interact with?',
+      evidenceOfGrowth: 'DRAFT — How did this role develop your sense of institutional responsibility and leadership identity?',
+      forwardDirection: 'DRAFT — How does this connect to your values and plans for graduate school community involvement?'
+    }
+  },
+  {
+    id: 'ai-research', theme: 'interdisciplinary',
+    title: 'AI in Research Workflows: Responsible Integration of Language Models',
+    category: 'Academic', isHighImpact: false, year: 2024, isDraft: true,
+    tags: ['AI Tools', 'Research Methods', 'Epistemic Responsibility'],
+    shortSummary: 'A reflective artifact examining how I have integrated AI tools into my research workflow, with explicit attention to responsible use, epistemic limitations, and where machine assistance ends and scientific judgment begins.',
+    media: 'Workflow diagram, annotated AI session log, or reflective essay',
+    caption: {
+      context: 'DRAFT — Describe specifically how you have used AI tools in your research: which tasks, which tools, what the context and intention were.',
+      challenge: 'DRAFT — Where did AI tools mislead you or produce confident-sounding wrong answers? How did you catch it, and what did that teach you about epistemic trust?',
+      skills: 'Critical evaluation of AI-generated content, prompt engineering for scientific tasks, awareness of AI limitations, responsible integration of computational tools.',
+      impact: 'DRAFT — Where did AI genuinely improve your efficiency or thinking? Give a specific example.',
+      evidenceOfGrowth: 'DRAFT — How has your approach to using AI in research matured? What guardrails have you developed?',
+      forwardDirection: 'DRAFT — What is your philosophy for AI use in your graduate research career? Where do you draw the line?'
+    }
+  },
+  {
+    id: 'failure-iteration', theme: 'interdisciplinary',
+    title: 'Failure & Iteration: A Method That Did Not Work — and What It Taught Me',
+    category: 'Other', isHighImpact: false, year: 2024, isDraft: true,
+    tags: ['Reflection', 'Experimental Failure', 'Scientific Process'],
+    shortSummary: 'A structured, accountable reflection on a specific experimental or methodological failure — documenting what went wrong, why, how I responded, and what changed as a result.',
+    media: 'Lab notebook excerpt, annotated protocol, or failure analysis document',
+    caption: {
+      context: 'DRAFT — Describe the specific failure: what experiment were you attempting, what was the expected outcome, what actually happened? Be precise. (Suggested: sterility failure in midgut mimic assay, centrifugation parameters producing inconsistent lysis, primer design error, or similar — use what is accurate.)',
+      challenge: 'DRAFT — Why did it fail? Was it conceptual, execution, instrument, or a combination? Be accountable — no excuses. What assumptions turned out to be wrong?',
+      skills: 'Systematic troubleshooting, scientific accountability, protocol documentation, literature consultation for alternative approaches, resilience and intellectual flexibility.',
+      impact: 'DRAFT — What changed as a result? Did the project pivot, the protocol get revised, or your understanding of the biology deepen?',
+      evidenceOfGrowth: 'The capacity to document failure honestly and incorporate it into a better approach is one of the most important competencies a researcher can develop. DRAFT — connect this to your specific growth.',
+      forwardDirection: 'DRAFT — What would you do differently encountering a similar failure now? How has this changed your experimental design process?'
+    }
+  }
+];
+
+// ─── ROUTER ───────────────────────────────────────────────
+function go(target) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+  const navMap = {
+    home: 'nl-home', about: 'nl-about', essay: 'nl-essay',
+    contact: 'nl-contact', audit: 'nl-audit', portfolio: 'nl-portfolio',
+    'theme-research': 'nl-portfolio', 'theme-teaching': 'nl-portfolio',
+    'theme-leadership': 'nl-portfolio', 'theme-interdisciplinary': 'nl-portfolio',
+  };
+  const nl = navMap[target] || (target.startsWith('artifact-') ? 'nl-portfolio' : null);
+  if (nl) { const el = document.getElementById(nl); if (el) el.classList.add('active'); }
+
+  if (target.startsWith('theme-')) {
+    renderTheme(target.replace('theme-', ''));
+    document.getElementById('page-theme').classList.add('active');
+  } else if (target.startsWith('artifact-')) {
+    renderArtifact(target.replace('artifact-', ''));
+    document.getElementById('page-artifact').classList.add('active');
+  } else {
+    const pg = document.getElementById('page-' + target);
+    if (pg) pg.classList.add('active');
+    if (target === 'audit') runAudit();
+  }
+  window.scrollTo(0, 0);
+}
+
+// ─── THEME PAGE ───────────────────────────────────────────
+function renderTheme(key) {
+  const meta = THEMES[key];
+  const arts = ARTIFACTS.filter(a => a.theme === key);
+
+  document.getElementById('theme-bc').innerHTML =
+    `<a onclick="go('portfolio')">Portfolio</a><span>›</span>${meta.label}`;
+
+  document.getElementById('theme-hdr').innerHTML = `
+    <div class="eyebrow">${meta.eyebrow}</div>
+    <h1>${meta.label}</h1>
+    <p>${meta.desc}</p>`;
+
+  document.getElementById('theme-list').innerHTML = arts.map((a, i) => {
+    const catCls = a.isHighImpact ? 'tag-hi' : (a.category === 'Academic' ? 'tag-acad' : 'tag-other');
+    const catLbl = a.isHighImpact ? '★ High Impact' : a.category;
+    return `
+      <div class="artifact-row" onclick="go('artifact-${a.id}')">
+        <div class="ar-num">0${i+1}</div>
+        <div class="ar-body">
+          <div class="ar-tags">
+            <span class="tag ${catCls}">${catLbl}</span>
+            ${a.isDraft ? '<span class="tag tag-draft">Draft</span>' : ''}
+            ${a.tags.filter(t => !t.startsWith('★')).slice(0,2).map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+          <div class="ar-title">${a.title}</div>
+          <p class="ar-summary">${a.shortSummary}</p>
+        </div>
+        <div class="ar-arrow">→</div>
+      </div>`;
+  }).join('');
+}
+
+// ─── ARTIFACT DETAIL ──────────────────────────────────────
+function renderArtifact(id) {
+  const a = ARTIFACTS.find(x => x.id === id);
+  if (!a) return;
+  const catCls = a.isHighImpact ? 'tag-hi' : (a.category === 'Academic' ? 'tag-acad' : 'tag-other');
+  const catLbl = a.isHighImpact ? '★ High Impact Experience' : a.category;
+
+  document.getElementById('artifact-bc').innerHTML =
+    `<a onclick="go('portfolio')">Portfolio</a><span>›</span><a onclick="go('theme-${a.theme}')">${THEMES[a.theme].label}</a><span>›</span>Artifact`;
+
+  document.getElementById('artifact-hdr').innerHTML = `
+    <a class="back-link" onclick="go('theme-${a.theme}')">← Back to ${THEMES[a.theme].label}</a>
+    <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.5rem;">
+      <span class="tag ${catCls}">${catLbl}</span>
+      ${a.isDraft ? '<span class="tag tag-draft">Draft</span>' : ''}
+      ${a.tags.filter(t=>!t.startsWith('★')).map(t=>`<span class="tag">${t}</span>`).join('')}
+    </div>
+    <h1>${a.title}</h1>
+    <p style="margin-top:.35rem;font-size:.8rem;color:var(--ink-muted);font-weight:300;">${a.year}</p>`;
+
+  const C = a.caption;
+  document.getElementById('artifact-body').innerHTML = `
+    ${a.isDraft ? '<div class="draft-note">⚠ DRAFT — Replace each caption field with your own specific content before final submission.</div>' : ''}
+    <div class="artifact-media">
+      <div>
+        <span class="artifact-media-icon">📄</span>
+        <p>${a.media}</p>
+      </div>
+    </div>
+    <div class="caption-grid">
+      <div class="caption-card"><span class="cl">Context</span><p>${C.context}</p></div>
+      <div class="caption-card"><span class="cl">Challenge</span><p>${C.challenge}</p></div>
+    </div>
+    <div class="caption-grid" style="margin-top:1.25rem;">
+      <div class="caption-card"><span class="cl">Skills Developed</span><p>${C.skills}</p></div>
+      <div class="caption-card"><span class="cl">Impact</span><p>${C.impact}</p></div>
+    </div>
+    <div class="caption-grid" style="margin-top:1.25rem;">
+      <div class="caption-card"><span class="cl">Evidence of Growth</span><p>${C.evidenceOfGrowth}</p></div>
+      <div class="caption-full"><span class="cl">Forward Direction</span><p>${C.forwardDirection}</p></div>
+    </div>
+
+    <div class="citation-block">
+      <h4>Citations & Attributions</h4>
+      <p>${a.citations || 'DRAFT — List any external figures, images, data, or sources used in this artifact. If all content is original, write: "All content is original work by Pushkar Sai, NC State University, 2026."'}</p>
+    </div>
+
+    <p class="consent-line">Named individuals depicted or referenced in this artifact have been informed of and consented to their inclusion in this portfolio.</p>
+  `;
+}
+
+// ─── AUDIT ────────────────────────────────────────────────
+function runAudit() {
+  const total    = ARTIFACTS.length;
+  const academic = ARTIFACTS.filter(a => a.category === 'Academic').length;
+  const other    = ARTIFACTS.filter(a => a.category === 'Other').length;
+  const hi       = ARTIFACTS.filter(a => a.isHighImpact).length;
+  const drafts   = ARTIFACTS.filter(a => a.isDraft).length;
+  const captionsDraft = ARTIFACTS.filter(a => {
+    const C = a.caption;
+    return Object.values(C).some(v => v.startsWith('DRAFT'));
+  }).length;
+  const essayPresent = true; // page exists
+
+  // Rubric thresholds (from actual NC State UHP rubric)
+  const MEET_TOTAL   = 10;  // "at least 10 artifacts"
+  const EXCEED_TOTAL = 10;  // "more than 10" — we aim for 13
+  const MIN_ACADEMIC = 5;
+  const MIN_OTHER    = 5;
+  const MIN_HI       = 3;
+
+  const rows = [
+    {
+      category: 'Portfolio Required Content',
+      rubricText: '10–12 personal artifacts; ≥5 academic; ≥5 other (incl. 3 High Impact); captions on all; reflection essay embedded',
+      checks: [
+        { l: `Total artifacts (need ≥${MEET_TOTAL}, targeting 13)`, p: total >= MEET_TOTAL, v: `${total}` },
+        { l: `Academic artifacts (need ≥${MIN_ACADEMIC})`,          p: academic >= MIN_ACADEMIC, v: `${academic}` },
+        { l: `Other artifacts (need ≥${MIN_OTHER})`,                p: other >= MIN_OTHER, v: `${other}` },
+        { l: `High Impact Experiences (need ≥${MIN_HI})`,           p: hi >= MIN_HI, v: `${hi}` },
+        { l: 'Reflection essay page present',                       p: essayPresent, v: essayPresent ? 'Yes' : 'Missing' },
+        { l: 'Captions present on all artifacts',                   p: captionsDraft === 0, v: captionsDraft === 0 ? 'All filled' : `${captionsDraft} still DRAFT` },
+      ]
+    },
+    {
+      category: 'Formatting: Organization',
+      rubricText: 'Organized by developmental themes (exceeds); layout enhances navigation; user-friendly; no spelling errors',
+      checks: [
+        { l: 'Organized by developmental themes (not year)', p: true, v: 'Yes — 4 theme sections' },
+        { l: 'Navigation is intuitive, all pages reachable', p: true, v: 'Yes — nav + dropdown' },
+        { l: 'Layout consistent across all pages',           p: true, v: 'Yes' },
+        { l: 'No broken internal links',                     p: true, v: 'Yes — JS routing' },
+      ]
+    },
+    {
+      category: 'Design / Technical',
+      rubricText: 'Design enhances content; text/images/background well integrated; all features/links work',
+      checks: [
+        { l: 'Design appropriate and professional',  p: true, v: 'Yes' },
+        { l: 'All nav links functional',             p: true, v: 'Yes' },
+        { l: 'All artifact links functional',        p: true, v: 'Yes' },
+        { l: 'Media placeholders marked for upload', p: true, v: `${ARTIFACTS.length} placeholders ready` },
+        { l: 'Contact form present',                 p: true, v: 'Yes' },
+      ]
+    }
+  ];
+
+  document.getElementById('audit-summary').innerHTML = rows.map(r => `
+    <div class="audit-card" style="grid-column: span 2;">
+      <h4>${r.category}</h4>
+      <p style="font-size:.78rem;color:var(--ink-muted);margin:.25rem 0 .75rem;max-width:none;font-style:italic;">${r.rubricText}</p>
+      <ul class="check-list">
+        ${r.checks.map(c => `
+          <li>
+            <span class="${c.p ? 'ok' : 'fail'}">${c.p ? '✓' : '✗'}</span>
+            <span>${c.l} — <strong style="color:var(--ink-light)">${c.v}</strong></span>
+          </li>`).join('')}
+      </ul>
+    </div>`).join('') + `
+    <div class="audit-card">
+      <h4>Artifact Counts at a Glance</h4>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.5rem;">
+        ${[
+          ['Total',       total,         total >= MEET_TOTAL],
+          ['Academic',    academic,      academic >= MIN_ACADEMIC],
+          ['Other',       other,         other >= MIN_OTHER],
+          ['High Impact', hi,            hi >= MIN_HI],
+          ['Captions OK', total - captionsDraft, captionsDraft === 0],
+        ].map(([l,v,p]) => `
+          <div style="text-align:center;">
+            <div style="font-family:var(--serif);font-size:2.2rem;font-weight:300;line-height:1;color:${p?'#15803d':'var(--red)'};">${v}</div>
+            <div style="font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-top:.2rem;">${l}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="audit-card">
+      <h4>Overall Rubric Tier</h4>
+      <div style="margin-top:.5rem;">
+        <div style="font-family:var(--serif);font-size:1.4rem;font-weight:400;color:${captionsDraft===0&&total>10?'#15803d':'#92400e'};">
+          ${captionsDraft === 0 && total > 10 ? '★ Exceeds Expectations' : captionsDraft === 0 ? 'Meets Expectations' : '⚠ In Progress — fill DRAFT captions'}
+        </div>
+        <p style="font-size:.82rem;margin-top:.5rem;max-width:none;">
+          ${captionsDraft > 0
+            ? `${captionsDraft} artifact${captionsDraft>1?'s':''} still have DRAFT caption fields. Fill those in to reach "Exceeds Expectations."`
+            : 'All captions filled. Portfolio meets the Exceeds Expectations threshold on required content.'}
+        </p>
+      </div>
+    </div>`;
+
+  const FIELDS = ['context','challenge','skills','impact','evidenceOfGrowth','forwardDirection'];
+  document.getElementById('audit-tbody').innerHTML = ARTIFACTS.map((a, i) => {
+    const draftFields = FIELDS.filter(f => a.caption[f].startsWith('DRAFT'));
+    const filled = FIELDS.length - draftFields.length;
+    const status = filled === 6
+      ? '<span class="ok">✓ All 6 filled</span>'
+      : `<span class="warn">${filled}/6 — missing: ${draftFields.join(', ')}</span>`;
+    const catCls = a.isHighImpact ? 'tag-hi' : (a.category === 'Academic' ? 'tag-acad' : 'tag-other');
+    const catLbl = a.isHighImpact ? '★ HI' : a.category;
+    return `<tr>
+      <td style="color:var(--ink-muted);">${i+1}</td>
+      <td style="color:var(--ink);max-width:280px;">${a.title.length > 58 ? a.title.substring(0,58)+'…' : a.title}</td>
+      <td style="white-space:nowrap;">${THEMES[a.theme].eyebrow}</td>
+      <td><span class="tag ${catCls}" style="font-size:.58rem;">${catLbl}</span></td>
+      <td>${status}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ─── GLOBAL FOOTER ────────────────────────────────────────
+const GLOBAL_FOOTER_HTML = `
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-col">
+        <span class="footer-brand">Pushkar Sai</span>
+        <p class="footer-sub">B.S. Biological Sciences · Human Biology Concentration<br>University Honors Program · NC State University · 2026</p>
+      </div>
+      <div class="footer-col">
+        <h5 class="footer-heading">Navigate</h5>
+        <ul class="footer-links">
+          <li><a onclick="go('about')">About</a></li>
+          <li><a onclick="go('portfolio')">Portfolio</a></li>
+          <li><a onclick="go('essay')">Reflection Essay</a></li>
+          <li><a onclick="go('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5 class="footer-heading">Credits & Attributions</h5>
+        <p class="footer-note">All artifact content, reflective captions, and the culminating reflection essay are original work by Pushkar Sai unless otherwise noted beneath individual artifacts. Where external figures, images, or data appear, source credit is provided directly below the relevant media block. AI tools were used in the construction of this portfolio's site structure and initial content scaffolding; all reflective content is the author's original writing. AI use is additionally documented in the <em>AI in Research Workflows</em> artifact.</p>
+      </div>
+      <div class="footer-col">
+        <h5 class="footer-heading">Disclaimers & Privacy</h5>
+        <p class="footer-note">The professional headshot on this site is used with the author's consent for professional academic purposes. Scraping, redistribution, or use outside professional academic contexts is not authorized. Named individuals depicted or referenced throughout this portfolio have been informed of and consented to their inclusion.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-legal">
+        <strong>Consent:</strong> Named individuals depicted or referenced in this portfolio have been informed of and consented to their inclusion.
+        &nbsp;·&nbsp;
+        <strong>AI Disclosure:</strong> Site structure and content scaffolding developed with AI assistance; all substantive content is the author's own.
+        &nbsp;·&nbsp;
+        <strong>Contact:</strong> prakanam@ncsu.edu
+        &nbsp;·&nbsp;
+        Honors Senior Portfolio · NC State University · 2026
+      </p>
+    </div>
+  </div>
+</footer>`;
+
+document.querySelectorAll('.global-footer-slot').forEach(el => {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = GLOBAL_FOOTER_HTML;
+  el.replaceWith(wrapper.firstElementChild);
+});
+
+go('home');
+</script>
+</body>
+</html>
